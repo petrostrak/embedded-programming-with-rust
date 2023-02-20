@@ -33,3 +33,16 @@ arm-none-eabi-gdb -q -ex "target extended-remote :3333" target/thumbv7em-none-ea
 ```
 cargo run -- -q -ex 'target remote :3333' -ex 'load' -ex 'set print asm-demangle on' -ex 'set style sources off' -ex 'b main' -ex 'c' target/thumbv7em-none-eabihf/debug/led-roulette
 ```
+
+Once in the debugger via (gdb)
+*   load (to flash)
+*   break main
+*   continue
+*   step
+*   next (The difference is that the `next` command will step over function calls instead of going inside them)
+
+To let it run uninterrupted using the continue command.
+*   contunue
+
+To show the arguments of a function, we can use the `info args` command.
+*   info args
