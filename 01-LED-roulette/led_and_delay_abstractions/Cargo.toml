@@ -8,3 +8,4 @@ authors = ["Petros Trakadas <pit.trak@gmail.com>"]
 
 [dependencies]
 aux5 = { path = "auxiliary" }
+volatile = "0.4.6"
