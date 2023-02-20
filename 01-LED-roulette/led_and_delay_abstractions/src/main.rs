@@ -9,34 +9,17 @@ use volatile::Volatile;
 fn main() -> ! {
     let (mut delay, mut leds): (Delay, LedArray) = aux5::init();
 
-    let mut ping_period = 100_u16;
-    let v_ping_period = Volatile::new(&mut ping_period);
+    let mut ms = 50_u8;
+    let v_ms = Volatile::new(&mut ms);
 
     loop {
-        leds[0].on().ok();
-        delay.delay_ms(v_ping_period.read());
-        leds[1].on().ok();
-        delay.delay_ms(v_ping_period.read());
-        leds[2].on().ok();
-        delay.delay_ms(v_ping_period.read());
-        leds[3].on().ok();
-        delay.delay_ms(v_ping_period.read());
-        leds[4].on().ok();
-        delay.delay_ms(v_ping_period.read());
-        leds[5].on().ok();
-        delay.delay_ms(v_ping_period.read());
-        leds[6].on().ok();
-        delay.delay_ms(v_ping_period.read());
-        leds[7].on().ok();
-        delay.delay_ms(v_ping_period.read());
+        for curr in 0..8 {
+            let next = (curr + 1) % 8;
 
-        leds[0].off().ok();
-        leds[1].off().ok();
-        leds[2].off().ok();
-        leds[3].off().ok();
-        leds[4].off().ok();
-        leds[5].off().ok();
-        leds[6].off().ok();
-        leds[7].off().ok();
+            leds[next].on().ok();
+            delay.delay_ms(v_ms.read());
+            leds[curr].off().ok();
+            delay.delay_ms(v_ms.read());
+        }
     }
 }
