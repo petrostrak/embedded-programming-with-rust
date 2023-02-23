@@ -34,11 +34,8 @@ cargo run -- -q -ex 'target remote :3333' -ex 'load' -ex 'set print asm-demangle
 ```
 
 Once in the debugger via (gdb)
-*   load (to flash)
-*   break main
-*   continue
 *   step
-*   next (The difference is that the `next` command will step over function calls instead of going inside them)
+*   next
 
 To let it run uninterrupted using the continue command.
 *   contunue
